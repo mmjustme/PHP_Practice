@@ -1,3 +1,59 @@
+<?php
+
+$posts = [
+    1 => [
+        'title' => 'Title 1',
+        'desc' => 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+        'slug' => 'title-1',
+    ],
+    2 => [
+        'title' => 'Title 2',
+        'desc' => 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+        'slug' => 'title-2',
+    ],
+    3 => [
+        'title' => 'Title 3',
+        'desc' => 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+        'slug' => 'title-3',
+    ],
+    4 => [
+        'title' => 'Title 4',
+        'desc' => 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+        'slug' => 'title-4',
+    ],
+    5 => [
+        'title' => 'Title 5',
+        'desc' => 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
+        'slug' => 'title-5',
+    ],
+
+];
+
+$recent_posts = [
+    1 => [
+        'title' => 'An item',
+        'slug' => lcfirst(str_replace(' ', '-', 'An item')),
+    ],
+    2 => [
+        'title' => 'A second item',
+        'slug' => lcfirst(str_replace(' ', '-', 'A second item')),
+    ],
+    3 => [
+        'title' => 'A third item',
+        'slug' => lcfirst(str_replace(' ', '-', 'A third item')),
+    ],
+    4 => [
+        'title' => 'A fourth item',
+        'slug' => lcfirst(str_replace(' ', '-', 'A fourth item')),
+    ],
+    5 => [
+        'title' => 'A fifth item',
+        'slug' => lcfirst(str_replace(' ', '-', 'A fifth item')),
+    ],
+]
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,30 +102,40 @@
                 <div class="row">
                     <div class="col-md-8">
 
-                        <div class="card mb-3">
+                        <?php foreach ($posts as $post): ?>
+                            <div class="card mb-3">
 
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#">Go somewhere</a>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="posts/<?= $post['slug'] ?>">
+                                            <?= $post['title']; ?>
+                                        </a>
+
+                                    </h5>
+                                    <p class="card-text">
+                                        <?= $post['desc']; ?>
+                                    </p>
+                                    <a href="posts/<?= $post['slug'] ?>">Go somewhere</a>
+                                </div>
+
                             </div>
+                        <?php endforeach ?>
 
-                        </div>
-                        <div class="card mb-3">
-
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#">Go somewhere</a>
-                            </div>
-
-                        </div>
 
                     </div>
                     <div class="col-md-4">
-                        sidebar
+                        <h3>Recent posts</h3>
+                        <ul class="list-group">
+                            <?php foreach ($recent_posts as $recent_post): ?>
+
+                                <li class="list-group-item">
+                                    <a href="post/<?= $recent_post['slug'] ?>">
+                                        <?= $recent_post['title'] ?>
+                                    </a>
+                                </li>
+
+                            <?php endforeach ?>
+                        </ul>
                     </div>
                 </div>
             </div>
