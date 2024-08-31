@@ -5,6 +5,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                <?php
+                #роздрукує дані
+                #dump($posts)
+                
+                #роздрукує дані і завершить виконання коду
+                #dd($posts)
+                ?>
+
+
+
                 <?php foreach ($posts as $post): ?>
                     <div class="card mb-3">
 

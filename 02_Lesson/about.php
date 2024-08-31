@@ -1,4 +1,7 @@
 <?php
+define("MY_APP", true);
+
+require './funcs.php';
 
 $post = '<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex placeat minus, impedit
 corporis veritatis similique sint quos nulla enim ducimus quasi modi eius, reprehenderit
