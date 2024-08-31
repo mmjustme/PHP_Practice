@@ -58,6 +58,6 @@ $recent_posts = [
 # Тому відділимо логіку від представлення створивши index.tpl.php приставка tpl
 # вказуж, що це шаблонний файл. Там ми і будемо зберігати представлення.
 
-require_once "./index.tpl.php";
+require_once "./app/views/index.tpl.php";
 # таким чином ми підключили наше представлення, тобто файл index.tpl.php
 # таким чином файл index.php - контроллер (controller), index.tpl.php - вид (view)

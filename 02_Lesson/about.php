@@ -33,6 +33,6 @@ $recent_posts = [
     ],
 ];
 
-require_once "./about.tpl.php";
+require_once "./app/views/about.tpl.php";
 
 # даний метод вже має недоліки, такі як дубляж коду, напр. посилання на файли в меню ми вказували на кожній сторінці
