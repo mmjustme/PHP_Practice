@@ -1,8 +1,6 @@
 <?php
 
-// require './funcs.php';
-
-$title = 'MY BLOG ::';
+$title = 'MY BLOG :: HOME';
 
 $posts = [
     1 => [
@@ -32,6 +30,7 @@ $posts = [
     ],
 
 ];
+// dd($posts); // working
 
 $recent_posts = [
     1 => [
@@ -56,4 +55,4 @@ $recent_posts = [
     ],
 ];
 
-require_once "../app/views/index.tpl.php";
+require_once VIEWS . "/index.tpl.php";

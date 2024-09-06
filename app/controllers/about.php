@@ -1,6 +1,6 @@
 <?php
 
-require './funcs.php';
+$title = 'MY BLOG :: ABOUT';
 
 $post = '<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex placeat minus, impedit
 corporis veritatis similique sint quos nulla enim ducimus quasi modi eius, reprehenderit
@@ -35,6 +35,4 @@ $recent_posts = [
     ],
 ];
 
-require_once "./app/views/about.tpl.php";
-
-# даний метод вже має недоліки, такі як дубляж коду, напр. посилання на файли в меню ми вказували на кожній сторінці
+require_once VIEWS . "/about.tpl.php";

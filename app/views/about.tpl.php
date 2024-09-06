@@ -1,4 +1,4 @@
-<?php require './app/views/incs/header.php' ?>
+<?php require VIEWS . '/incs/header.php' ?>
 
 <main class="main py-3">
 
@@ -7,11 +7,10 @@
             <div class="col-md-8">
                 <?= $post ?>
             </div>
-
-            <?php require './app/views/incs/sidebar.php' ?>
+            <?php require VIEWS . '/incs/sidebar.php' ?>
         </div>
     </div>
 
 </main>
 
-<?php require './app/views/incs/footer.php' ?>
+<?php require VIEWS . '/incs/footer.php' ?>
