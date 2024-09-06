@@ -1,5 +1,7 @@
 <?php
 
+require './funcs.php';
+
 $title = 'MY BLOG ::';
 
 $posts = [
@@ -53,11 +55,5 @@ $recent_posts = [
         'slug' => lcfirst(str_replace(' ', '-', 'A fifth item')),
     ],
 ];
-# Вкраплення коду я нижче є нормальним.
-# Проте змішування коду представлення і логіки (posts, recent_posts) є проблемою. 
-# Тому відділимо логіку від представлення створивши index.tpl.php приставка tpl
-# вказуж, що це шаблонний файл. Там ми і будемо зберігати представлення.
 
-require_once "./index.tpl.php";
-# таким чином ми підключили наше представлення, тобто файл index.tpl.php
-# таким чином файл index.php - контроллер (controller), index.tpl.php - вид (view)
+require_once "./app/views/index.tpl.php";

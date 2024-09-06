@@ -1,5 +1,4 @@
 <?php
-define("MY_APP", true);
 
 require './funcs.php';
 

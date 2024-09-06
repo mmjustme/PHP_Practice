@@ -1,5 +1,3 @@
-<?php defined("MY_APP") or die("Blocked") ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
