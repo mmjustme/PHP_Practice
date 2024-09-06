@@ -7,7 +7,7 @@ define("CORE", ROOT . '/core');
 define("APP", ROOT . '/app');
 define("CONTROLLERS", APP . '/controllers');
 define("VIEWS", APP . '/views');
-define("PATH", 'http://localhost/');
+define("PATH", 'http://localhost/PHP_Practice');
 
 require CORE . "/funcs.php";
 
@@ -17,7 +17,9 @@ $uri = trim($_SERVER['REQUEST_URI'], "/"); // "/PHP_Practice/" => PHP_Practice
 
 if ($uri === "PHP_Practice") {
     require CONTROLLERS . '/index.php';
-} elseif ($uri == 'PHP_Practice/about.php') {
+
+} elseif ($uri == 'PHP_Practice/about') {
+
     require CONTROLLERS . '/about.php';
 } else {
     abort();
