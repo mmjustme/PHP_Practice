@@ -1,6 +1,6 @@
 <?php
 
-require './funcs.php';
+// require './funcs.php';
 
 $title = 'MY BLOG ::';
 
@@ -56,4 +56,4 @@ $recent_posts = [
     ],
 ];
 
-require_once "./app/views/index.tpl.php";
+require_once "../app/views/index.tpl.php";
