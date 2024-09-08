@@ -4,9 +4,11 @@ class Db
 {
     private $connection;
 
+    # підключення бази
     public function __construct(array $db_config)
     {
-        $dsn = "mysql:host={$db_config['host']};dbusername={$db_config['dbusername']};charset={$db_config['charset']}";
+        $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};
+        charset={$db_config['charset']}";
 
         try {
             $this->connection = new PDO(
@@ -19,6 +21,14 @@ class Db
             abort(500);
         }
 
+    }
+
+    #функція запиту в базу
+    public function query($query)
+    {
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        return $stmt;
     }
 
 }
