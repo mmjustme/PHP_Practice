@@ -1,7 +1,7 @@
 <?php
 
 define("ROOT", dirname(__DIR__)); // /opt/lampp/htdocs/PHP_Practice"
-define("PUBLIC", ROOT . '/public');
+define("PUBLIC_FOLDER", ROOT . '/public');
 define("CORE", ROOT . '/core');
 define("CONFIG", ROOT . '/config');
 define("APP", ROOT . '/app');
