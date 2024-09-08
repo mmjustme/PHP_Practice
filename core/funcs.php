@@ -19,3 +19,17 @@ function abort($code = 404)
     require VIEWS . "/errors/{$code}.tpl.php";
     die();
 }
+
+function load($fillable)
+{
+    $data = [];
+    #задача перевірити чи в масиві fillable є поля з данних юзера
+    foreach ($_POST as $key => $value) {
+        # беремо $key і перевіряємо наявність в fillable
+        if (in_array($key, $fillable)) {
+            # запис данних юзера в масив data
+            $data[$key] = $value;
+        }
+    }
+    return $data;
+}

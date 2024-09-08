@@ -11,16 +11,37 @@
                     <div class="mb-3">
                         <label for="title" class="form-label">Post Title</label>
                         <input name="title" type="text" class="form-control" id="title" placeholder="Post Title">
+
+                        <?php if (isset($errors["title"])): ?>
+                            <div class="invalid-feedback d-block">
+                                <?= $errors["title"] ?>
+                            </div>
+                        <?php endif ?>
+
                     </div>
+
                     <div class="mb-3">
                         <label for="excerpt" class="form-label">Excerpt</label>
                         <input name="excerpt" type="text" class="form-control" id="excerpt" placeholder="Post Excerpt"
                             rows="3">
+
+                        <?php if (isset($errors["excerpt"])): ?>
+                            <div class="invalid-feedback d-block">
+                                <?= $errors["excerpt"] ?>
+                            </div>
+                        <?php endif ?>
                     </div>
+
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
                         <textarea name="content" type="text" class="form-control" id="content"
                             placeholder="Post Content" rows="5"></textarea>
+
+                        <?php if (isset($errors["content"])): ?>
+                            <div class="invalid-feedback d-block">
+                                <?= $errors["content"] ?>
+                            </div>
+                        <?php endif ?>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Create Post</button>
