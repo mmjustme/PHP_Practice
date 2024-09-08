@@ -39,4 +39,9 @@ class Db
         return $this->stmt->fetchAll();
     }
 
+    public function find()
+    {
+        return $this->stmt->fetch();
+    }
+
 }

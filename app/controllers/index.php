@@ -12,6 +12,6 @@ $posts = $db->query("SELECT * FROM posts ORDER BY id DESC")->findAll();
 // dd($posts);
 
 $recent_posts = $db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 3")->findAll();
-
+// dd($recent_posts[0]["id"]);
 
 require_once VIEWS . "/index.tpl.php";
