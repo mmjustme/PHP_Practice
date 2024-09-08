@@ -12,27 +12,6 @@ iste perferendis nostrum doloremque perspiciatis autem quae ipsa tempore.</p>
     numquam quo dignissimos corporis accusantium earum quisquam perspiciatis modi? Corporis
    totam excepturi repellendus placeat illo saepe nulla ipsum.</p>';
 
-$recent_posts = [
-    1 => [
-        'title' => 'An item',
-        'slug' => lcfirst(str_replace(' ', '-', 'An item')),
-    ],
-    2 => [
-        'title' => 'A second item',
-        'slug' => lcfirst(str_replace(' ', '-', 'A second item')),
-    ],
-    3 => [
-        'title' => 'A third item',
-        'slug' => lcfirst(str_replace(' ', '-', 'A third item')),
-    ],
-    4 => [
-        'title' => 'A fourth item',
-        'slug' => lcfirst(str_replace(' ', '-', 'A fourth item')),
-    ],
-    5 => [
-        'title' => 'A fifth item',
-        'slug' => lcfirst(str_replace(' ', '-', 'A fifth item')),
-    ],
-];
+$recent_posts = $db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 3")->findAll();
 
 require_once VIEWS . "/about.tpl.php";
