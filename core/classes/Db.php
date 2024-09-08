@@ -1,13 +1,41 @@
 <?php
-
-class Db
+# final - це для остаточної реалізації singletone патерна
+# озн заброну наслідування
+final class Db
 {
     private $connection;
     private PDOStatement $stmt;
+    private static $instance = null;
+
+    # патерн single tone
+    private function __cunstruct()
+    {
+    }
+    private function __clone()
+    {
+    }
+    public function __wakeup()
+    {
+    }
+
+    # проблема в можливості створення декількох об'єктів підключення до бд
+    # через статичний метод getInstance ми перевіримо чи вже існує підключення
+    # якщо так повернемо його якщо ні підключимо
+    public static function getInstance()
+    {
+        # звернення до статичного параметра - self::$instance
+        if (self::$instance === null) {
+            # в цей блок ми попади якщо обєкту класу ще немає оск = null і відповідно створюємо
+            # self() - озн створи себе сам
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
     # підключення бази
-    public function __construct(array $db_config)
-    {
+    public function getConnection(
+        array $db_config
+    ) {
         $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};
         charset={$db_config['charset']}";
 
@@ -18,6 +46,7 @@ class Db
                 $db_config['dbpassword'],
                 $db_config['options']
             );
+            return $this;
         } catch (PDOException $e) {
             abort(500);
         }
