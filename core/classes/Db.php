@@ -3,7 +3,7 @@
 class Db
 {
     private $connection;
-    private $stmt;
+    private PDOStatement $stmt;
 
     # підключення бази
     public function __construct(array $db_config)
@@ -36,7 +36,7 @@ class Db
 
     public function findAll()
     {
-        return "Test";
+        return $this->stmt->fetchAll();
     }
 
 }
