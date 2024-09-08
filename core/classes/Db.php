@@ -3,6 +3,7 @@
 class Db
 {
     private $connection;
+    private $stmt;
 
     # підключення бази
     public function __construct(array $db_config)
@@ -26,9 +27,16 @@ class Db
     #функція запиту в базу
     public function query($query)
     {
-        $stmt = $this->connection->prepare($query);
-        $stmt->execute();
-        return $stmt;
+        $this->stmt = $this->connection->prepare($query);
+        $this->stmt->execute();
+        # повертаємо саме наш клас Db, а не обєкт класу PDO як раніше
+        # а об'єкт класу PDO тепер буде в параметрі $stmt і в нього вже його методи типу fetchAll
+        return $this;
+    }
+
+    public function findAll()
+    {
+        return "Test";
     }
 
 }
