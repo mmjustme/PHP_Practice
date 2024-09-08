@@ -44,4 +44,13 @@ class Db
         return $this->stmt->fetch();
     }
 
+    public function findOrFail()
+    {
+        $res = $this->find();
+        if (!$res) {
+            abort();
+        }
+        return $res;
+    }
+
 }

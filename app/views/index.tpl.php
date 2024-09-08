@@ -9,7 +9,7 @@
 
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="posts?id=<?= $post['id'] ?>">
+                                <a href="post?id=<?= $post['id'] ?>">
                                     <?= $post['title']; ?>
                                 </a>
 
@@ -17,7 +17,7 @@
                             <p class="card-text">
                                 <?= $post['excerpt']; ?>
                             </p>
-                            <a href="posts?id=<?= $post['id'] ?>">Go somewhere</a>
+                            <a href="post?id=<?= $post['id'] ?>">Go somewhere</a>
                         </div>
 
                     </div>
