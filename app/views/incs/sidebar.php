@@ -4,7 +4,7 @@
         <?php foreach ($recent_posts as $recent_post): ?>
 
             <li class="list-group-item">
-                <a href="post/<?= $recent_post['slug'] ?>">
+                <a href="post?id=<?= $recent_post['id'] ?>">
                     <?= $recent_post['title'] ?>
                 </a>
             </li>

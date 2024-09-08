@@ -9,10 +9,7 @@ $db_config = require CONFIG . '/db.php';
 
 $db = new Db($db_config);
 
-// dd($db);
-#перевірка запиту постів
-$posts = $db->query("SELECT * FROM posts")->fetchAll();
-dd($posts);
+
 
 
 require CORE . "/router.php";
