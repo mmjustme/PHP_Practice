@@ -28,7 +28,7 @@ function load($fillable)
         # беремо $key і перевіряємо наявність в fillable
         if (in_array($key, $fillable)) {
             # запис данних юзера в масив data
-            $data[$key] = $value;
+            $data[$key] = trim($value);
         }
     }
     return $data;
