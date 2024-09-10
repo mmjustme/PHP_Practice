@@ -10,7 +10,7 @@
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a href="post?id=<?= $post['id'] ?>">
-                                    <?= $post['title']; ?>
+                                    <?= h($post['title']); ?>
                                 </a>
 
                             </h5>

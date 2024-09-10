@@ -18,9 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
+        # іменовані поля ":title" дають можливість як параметр вставити масив $data
         $db->query(
-            "INSERT INTO posts (`title`,`content`,`excerpt`) VALUES (?,?,?)",
-            [$_POST["title"], $_POST["content"], $_POST["excerpt"]]
+            "INSERT INTO posts (`title`,`content`,`excerpt`) VALUES (:title,:content,:excerpt)",
+            $data
         );
     }
 }
