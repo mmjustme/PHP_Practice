@@ -5,7 +5,7 @@
 
             <li class="list-group-item">
                 <a href="post?id=<?= $recent_post['id'] ?>">
-                    <?= $recent_post['title'] ?>
+                    <?= h($recent_post['title']) ?>
                 </a>
             </li>
 

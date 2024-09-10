@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($data["excerpt"]))) {
         $errors["excerpt"] = "Excerpt is requered";
     }
-    var_dump($errors);
+    // var_dump($errors);
 
     if (empty($errors)) {
         # `` дані кавички допомагають коли назва поля співпада із зарезервованим словом sql типу desc

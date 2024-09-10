@@ -33,3 +33,14 @@ function load($fillable)
     }
     return $data;
 }
+
+function old($fieldname)
+{
+    return isset($_POST[$fieldname]) ? h($_POST[$fieldname]) : '';
+}
+
+function h($str)
+{
+    #дана фн перетворює теги на звичайні символи
+    return htmlspecialchars($str, ENT_QUOTES);
+}
