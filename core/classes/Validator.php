@@ -6,12 +6,12 @@ class Validator
 
     public function validate($data = [], $rules = [])
     {
-        print_arr($data);
+        // print_arr($data);
         //     [title] => Vel maxime totam qui
         //     [excerpt] => In nisi tempor offic
         //     [content] => Sint sunt et rerum o
 
-        print_arr($rules);
+        // print_arr($rules);
 
         foreach ($data as $field => $value) {
             # потрібно перевірити чи данних з форми поля ("title" та ін) є в правилах перевірики
@@ -41,7 +41,30 @@ class Validator
 
     protected function check($field, )
     {
-        print_arr($field);
+        // print_arr($field);
 
+
+    }
+    # Методи які будуть перевіряти наші поля і повертати true/false відповідно до валідації
+    protected function required($value, $rule_value)
+    {
+        # суть методу повернути true якщо пусто і requred відсутній
+        # і false якщо requred є
+        return !empty(trim($value));
+    }
+
+    protected function min($value, $rule_value)
+    {
+        return mb_strlen($value) >= $rule_value;
+    }
+
+    protected function max($value, $rule_value)
+    {
+        return mb_strlen($value) <= $rule_value;
+    }
+
+    protected function email($value, $rule_value)
+    {
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 }
