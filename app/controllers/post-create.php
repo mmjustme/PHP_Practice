@@ -1,21 +1,37 @@
 <?php
 
+require_once CORE . "/classes/Validator.php";
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $fillable = ['title', 'content', 'excerpt'];
 
     $data = load($fillable);
+    $form_rules = [
+        'title' => ['requred' => true, 'min' => 3, 'max' => 250,],
+        'excerpt' => ['requred' => true, 'min' => 5, 'max' => 250,],
+        'content' => ['requred' => true, 'min' => 3,]
+    ];
+    // Validation
+
+    $validator = new Validator();
+    $validtion = $validator->validate($data, $form_rules);
 
     $errors = [];
-    if (empty($data["title"])) {
-        $errors["title"] = "Title is requered";
-    }
-    if (empty($data["content"])) {
-        $errors["content"] = "Content is requered";
-    }
-    if (empty($data["excerpt"])) {
-        $errors["excerpt"] = "Excerpt is requered";
-    }
+    die();
+
+
+    // if (empty($data["title"])) {
+    //     $errors["title"] = "Title is requered";
+    // }
+    // if (empty($data["content"])) {
+    //     $errors["content"] = "Content is requered";
+    // }
+    // if (empty($data["excerpt"])) {
+    //     $errors["excerpt"] = "Excerpt is requered";
+    // }
 
     if (empty($errors)) {
         # іменовані поля ":title" дають можливість як параметр вставити масив $data

@@ -3,7 +3,7 @@
 require CONFIG . "/routes.php";
 
 $uri = trim(parse_url($_SERVER['REQUEST_URI'])['path'], "/"); // PHP_Practice
-dump($uri);
+// dump($uri);
 
 // Перевіримо наявність ключа в uri в масиві routes
 // тобто якщо ми знайшли about ми підключимо відпов.контроллер
