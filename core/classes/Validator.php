@@ -4,6 +4,12 @@ class Validator
 {
     protected $errors = [];
     protected $allowed_validation_methods = ['required', 'min', 'max', 'email'];
+    protected $errorMessages = [
+        'required' => 'The :fieldname: field is required',
+        'min' => 'The :fieldname: field must be a minimun :rulevalue: characters',
+        'max' => 'The :fieldname: field must be a maximum :rulevalue: characters',
+        'email' => 'Not valid email',
+    ];
 
     public function validate($data = [], $rules = [])
     {
@@ -62,13 +68,27 @@ class Validator
                 # фн приймає функцію яку потрібно викликати і значення які в неї покласти
                 # якщо це в класі буде $this - наш склас, а метод буде в - $rule 
                 if (!call_user_func_array([$this, $rule], [$field['value'], $rule_value])) {
-                    echo "{$field['field']} : {$rule} - failed <br>";
-                } else {
-                    echo "{$field['field']} : {$rule} - success <br>";
+                    // echo "{$field['field']} : {$rule} - failed <br>";
+                    $this->addError(
+                        $field['field'],
+                        #str_replace lдопоможе використати заготовані повідомлення і замінити в них слова відповідно до кожного поля
+                        str_replace(
+                            [':fieldname:', ':rulevalue:'],
+                            [$field['field'], $rule_value],
+                            $this->errorMessages[$rule]
+                        )
+                    );
                 }
             }
         }
 
+    }
+
+    protected function addError($field, $error)
+    {
+        # errors[$field][] пустий масив в кінці озн що можуть бути декілька помилок для одного поля
+        # відповідно вони будуть в масиві
+        $this->errors[$field][] = $error;
     }
     # Методи які будуть перевіряти наші поля і повертати true/false відповідно до валідації
     protected function required($value, $rule_value)
