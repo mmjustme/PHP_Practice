@@ -44,9 +44,10 @@ class Validator
                 //     )
             }
         }
+        return $this;
     }
 
-    protected function check($field, )
+    protected function check($field)
     {
         // print_arr($field);
         // [field] => title
@@ -90,6 +91,18 @@ class Validator
         # відповідно вони будуть в масиві
         $this->errors[$field][] = $error;
     }
+
+    public function getErrors()
+    {
+        return $this->errorMessages;
+    }
+
+    public function hasError()
+    {
+        return empty($this->errorMessages);
+    }
+
+
     # Методи які будуть перевіряти наші поля і повертати true/false відповідно до валідації
     protected function required($value, $rule_value)
     {

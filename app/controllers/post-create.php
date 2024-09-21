@@ -19,7 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validator = new Validator();
     $validtion = $validator->validate($data, $form_rules);
 
-    $errors = [];
+    if ($validtion->hasError()) {
+        print_arr($validtion->getErrors());
+    }
     die();
 
 
