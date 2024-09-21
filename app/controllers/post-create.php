@@ -10,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $data = load($fillable);
     $form_rules = [
-        'title' => ['requred' => true, 'min' => 3, 'max' => 250,],
-        'excerpt' => ['requred' => true, 'min' => 5, 'max' => 250,],
-        'content' => ['requred' => true, 'min' => 3,]
+        'title' => ['required' => true, 'min' => 3, 'max' => 250,],
+        'excerpt' => ['required' => true, 'min' => 5, 'max' => 250,],
+        'content' => ['required' => true, 'min' => 3,]
     ];
     // Validation
 

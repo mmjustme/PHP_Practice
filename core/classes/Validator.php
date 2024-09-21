@@ -3,6 +3,7 @@
 class Validator
 {
     protected $errors = [];
+    protected $allowed_validation_methods = ['required', 'min', 'max', 'email'];
 
     public function validate($data = [], $rules = [])
     {
@@ -31,7 +32,7 @@ class Validator
                 // [value] => Vel maxime totam qui
                 // [rules] => Array
                 //     (
-                //         [requred] => 1
+                //         [required] => 1
                 //         [min] => 3
                 //         [max] => 250
                 //     )
@@ -42,7 +43,31 @@ class Validator
     protected function check($field, )
     {
         // print_arr($field);
+        // [field] => title
+        // [value] => Vel maxime totam qui
+        // [rules] => Array
+        //     (
+        //         [required] => 1
+        //         [min] => 3
+        //         [max] => 250
+        //     )
+        # пробігаємося по масиву з правилами і перевіряємо чи  
+        # такі валідатори є в нашому списку дозволених валідаторів
+        foreach ($field['rules'] as $rule => $rule_value) {
+            if (in_array($rule, $this->allowed_validation_methods)) {
+                # якщо ми тут отже в нас наявні методи для перевірки
+                # викличимо їх. 
 
+                # щоб викоикати і застосувати метод потрібно call_user_func_array
+                # фн приймає функцію яку потрібно викликати і значення які в неї покласти
+                # якщо це в класі буде $this - наш склас, а метод буде в - $rule 
+                if (!call_user_func_array([$this, $rule], [$field['value'], $rule_value])) {
+                    echo "{$field['field']} : {$rule} - failed <br>";
+                } else {
+                    echo "{$field['field']} : {$rule} - success <br>";
+                }
+            }
+        }
 
     }
     # Методи які будуть перевіряти наші поля і повертати true/false відповідно до валідації
