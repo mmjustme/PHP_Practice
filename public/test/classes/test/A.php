@@ -1,6 +1,6 @@
 <?php
 
-namespace classes;
+namespace base;
 class A
 {
     public function __construct()
