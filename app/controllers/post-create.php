@@ -12,15 +12,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $form_rules = [
         'title' => ['required' => true, 'min' => 3, 'max' => 250,],
         'excerpt' => ['required' => true, 'min' => 5, 'max' => 250,],
-        'content' => ['required' => true, 'min' => 3,]
+        'content' => ['required' => true, 'min' => 10,]
     ];
     // Validation
 
     $validator = new Validator();
     $validtion = $validator->validate($data, $form_rules);
 
-    if ($validtion->hasError()) {
+    // var_dump($validator->hasErrors());
+    // var_dump($validator->getErrors());
+    if ($validtion->hasErrors()) {
         print_arr($validtion->getErrors());
+    } else {
+        echo "SUCCESS";
     }
     die();
 
