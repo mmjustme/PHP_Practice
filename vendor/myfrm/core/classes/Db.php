@@ -1,6 +1,13 @@
 <?php
 # final - це для остаточної реалізації singletone патерна
 # озн заброну наслідування
+
+namespace myfrm;
+# для класів які встроєні в PHP окремо прописуємо тут або додаємо \ перед назвою
+use PDO;
+use PDOException;
+use PDOStatement;
+
 final class Db
 {
     private $connection;

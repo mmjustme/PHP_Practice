@@ -1,10 +1,14 @@
 <?php
 ini_set('display_errors', 1);
 
+use myfrm\Db;
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
 require dirname(__DIR__) . '/config/config.php';
 require CORE . "/funcs.php";
 
-require CORE . "/classes/Db.php";
+
 $db_config = require CONFIG . '/db.php';
 
 # при створенні ще одного підключення не ств нове а повертається попереднє
