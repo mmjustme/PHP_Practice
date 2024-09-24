@@ -50,3 +50,26 @@ function h($str)
     #дана фн перетворює теги на звичайні символи
     return htmlspecialchars($str, ENT_QUOTES);
 }
+function redirect($url = '')
+{
+    if ($url) {
+        $redirect = $url;
+    } else {
+        $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : PATH;
+    }
+    header("Location: {$redirect}");
+    die;
+}
+
+function get_alerts()
+{
+    if (!empty($_SESSION['success'])) {
+        require_once VIEWS . "/incs/alert_success.php";
+        unset($_SESSION['success']);
+    }
+
+    if (!empty($_SESSION['error'])) {
+        require_once VIEWS . "/incs/alert_error.php";
+        unset($_SESSION['error']);
+    }
+}

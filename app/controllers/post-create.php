@@ -20,16 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // var_dump($validator->hasErrors());
     // var_dump($validator->getErrors());
     if (!$validtion->hasErrors()) {
-        if (
-            $db->query(
-                "INSERT INTO posts (`title`,`content`,`excerpt`) VALUES (:title,:content,:excerpt)",
-                $data
-            )
-        ) {
+        if ($db->query("INSERT INTO posts (`title`,`content`,`excerpt`) VALUES (:title,:content,:excerpt)", $data)) {
             $_SESSION['success'] = "OK";
         } else {
             $_SESSION['error'] = "DB ERROR";
         }
+        redirect();
     }
 
 }

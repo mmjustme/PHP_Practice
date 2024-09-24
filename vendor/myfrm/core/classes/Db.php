@@ -63,10 +63,15 @@ final class Db
     #функція запиту в базу
     public function query($query, $params = [])
     {
-        $this->stmt = $this->connection->prepare($query);
-        $this->stmt->execute($params);
-        # повертаємо саме наш клас Db, а не обєкт класу PDO як раніше
-        # а об'єкт класу PDO тепер буде в параметрі $stmt і в нього вже його методи типу fetchAll
+        try {
+            $this->stmt = $this->connection->prepare($query);
+            $this->stmt->execute($params);
+            # повертаємо саме наш клас Db, а не обєкт класу PDO як раніше
+            # а об'єкт класу PDO тепер буде в параметрі $stmt і в нього вже його методи типу fetchAll
+        } catch (PDOException $e) {
+            return false;
+        }
+
         return $this;
     }
 
