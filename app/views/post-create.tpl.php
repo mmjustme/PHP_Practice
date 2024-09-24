@@ -13,12 +13,7 @@
                         <input name="title" type="text" class="form-control" id="title" placeholder="Post Title"
                             value="<?= old("title") ?>">
 
-                        <?php if (isset($errors["title"])): ?>
-                            <div class="invalid-feedback d-block">
-                                <?= $errors["title"] ?>
-                            </div>
-                        <?php endif ?>
-
+                        <?= isset($validtion) ? $validtion->listErrors("title") : ''; ?>
                     </div>
 
                     <div class="mb-3">
@@ -26,11 +21,7 @@
                         <input name="excerpt" type="text" class="form-control" id="excerpt" placeholder="Post Excerpt"
                             rows="3" value="<?= old("excerpt") ?>">
 
-                        <?php if (isset($errors["excerpt"])): ?>
-                            <div class="invalid-feedback d-block">
-                                <?= $errors["excerpt"] ?>
-                            </div>
-                        <?php endif ?>
+                        <?= isset($validtion) ? $validtion->listErrors("excerpt") : ''; ?>
                     </div>
 
                     <div class="mb-3">
@@ -38,11 +29,7 @@
                         <textarea name="content" type="text" class="form-control" id="content"
                             placeholder="Post Content" rows="5"><?= old("content") ?></textarea>
 
-                        <?php if (isset($errors["content"])): ?>
-                            <div class="invalid-feedback d-block">
-                                <?= $errors["content"] ?>
-                            </div>
-                        <?php endif ?>
+                        <?= isset($validtion) ? $validtion->listErrors("content") : ''; ?>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Create Post</button>

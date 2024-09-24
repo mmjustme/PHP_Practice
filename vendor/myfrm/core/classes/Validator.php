@@ -27,7 +27,7 @@ class Validator
             #fieldname = title, content, excerpt
             # потрібно перевірити чи данних з форми поля ("title" та ін) є в правилах перевірики
             # тобто в масиві $rules. 
-            if (in_array($fieldname, array_keys($rules))) {
+            if (isset($rules[$fieldname])) {
                 # відповідно якщо поле наявне в правилах, отже, ми його маємо валідувати
                 # таким чином ми контролюємо які поля валідувати                
 
@@ -108,6 +108,19 @@ class Validator
     public function hasErrors()
     {
         return !empty($this->errors);
+    }
+
+    public function listErrors($fieldname)
+    {
+        $output = '';
+        if (isset($this->errors[$fieldname])) {
+            $output .= "<div class='invalid-feedback d-block'><ul class='list-unstyled'>";
+            foreach ($this->errors[$fieldname] as $error) {
+                $output .= "<li>{$error}</li>";
+            }
+            $output .= '</ul></div>';
+        }
+        return $output;
     }
 
 

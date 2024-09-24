@@ -19,31 +19,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // var_dump($validator->hasErrors());
     // var_dump($validator->getErrors());
-    if ($validtion->hasErrors()) {
-        print_arr($validtion->getErrors());
-    } else {
-        echo "SUCCESS";
+    if (!$validtion->hasErrors()) {
+        if (
+            $db->query(
+                "INSERT INTO posts (`title`,`content`,`excerpt`) VALUES (:title,:content,:excerpt)",
+                $data
+            )
+        ) {
+            $_SESSION['success'] = "OK";
+        } else {
+            $_SESSION['error'] = "DB ERROR";
+        }
     }
-    die();
 
-
-    // if (empty($data["title"])) {
-    //     $errors["title"] = "Title is requered";
-    // }
-    // if (empty($data["content"])) {
-    //     $errors["content"] = "Content is requered";
-    // }
-    // if (empty($data["excerpt"])) {
-    //     $errors["excerpt"] = "Excerpt is requered";
-    // }
-
-    if (empty($errors)) {
-        # іменовані поля ":title" дають можливість як параметр вставити масив $data
-        $db->query(
-            "INSERT INTO posts (`title`,`content`,`excerpt`) VALUES (:title,:content,:excerpt)",
-            $data
-        );
-    }
 }
 
 $title = "MY BLOG :: New Post";
