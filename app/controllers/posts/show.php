@@ -1,7 +1,11 @@
 <?php
 global $db;
 
-$id = (int) $_GET["id"] ?? 0;
+/** 
+ * @var Db $db 
+ **/
+
+$id = $_GET["id"] ?? 0;
 
 # захист query від SQL інєкції
 $post = $db->query("SELECT * FROM posts WHERE id = :id LIMIT 1", [":id" => $id])->findOrFail();
