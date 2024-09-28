@@ -2,7 +2,7 @@
 namespace myfrm;
 class Router
 {
-    protected $routes = [];
+    public $routes = [];
     protected $uri;
     protected $method;
 
