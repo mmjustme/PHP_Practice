@@ -17,5 +17,5 @@ $db = (Db::getInstance())->getConnection($db_config);
 $router = new Router();
 
 require_once CONFIG . '/routes.php';
-dd($router->routes);
+$router->match();
 // require CORE . "/router.php";

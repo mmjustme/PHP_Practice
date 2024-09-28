@@ -2,7 +2,7 @@
 namespace myfrm;
 class Router
 {
-    public $routes = [];
+    protected $routes = [];
     protected $uri;
     protected $method;
 
@@ -18,8 +18,26 @@ class Router
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
-            'methods' => $method,
+            'method' => $method,
         ];
+    }
+
+    public function match()
+    {
+        $matches = false;
+
+        # пробігаємося по наших роутах це масиви з uri,controller, methods
+        foreach ($this->routes as $route) {
+            #якщо є співпадіння в строці запиту і методі підключаємо відпов. контроллер
+            if (($route['uri'] === $this->uri) && ($route['method'] === strtoupper($this->method))) {
+                require CONTROLLERS . "/{$route['controller']}";
+                // dd($route);
+                $matches = true;
+                break;
+            }
+        }
+        if (!$matches)
+            abort();
     }
 
     public function get($uri, $controller)
