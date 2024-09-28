@@ -12,6 +12,7 @@ $router->get("posts/create", "posts/create.php");
 $router->post("posts", "posts/store.php");
 $router->delete("posts", "posts/destroy.php");
 
+$router->get("about", "about.php");
 // $routes = [
 //     "" => "index.php",
 //     "about" => "about.php",

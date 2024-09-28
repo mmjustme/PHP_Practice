@@ -1,5 +1,6 @@
 <?php
 
+global $db;
 $title = 'MY BLOG :: ABOUT';
 
 $post = '<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex placeat minus, impedit
