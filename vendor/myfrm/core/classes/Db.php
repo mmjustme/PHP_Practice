@@ -94,4 +94,10 @@ final class Db
         return $res;
     }
 
+    public function rowCount()
+    {
+        # метод PDO який повертає к-ть видаленх рядків
+        return $this->stmt->rowCount();
+    }
+
 }
