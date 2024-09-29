@@ -9,7 +9,9 @@ class Router
     public function __construct()
     {
         $this->uri = trim(parse_url($_SERVER['REQUEST_URI'])['path'], "/");
-        $this->method = $_SERVER['REQUEST_METHOD'];
+        # дає можливість спочатку перевірити чи є щось в _method
+        # потрібно для реалізації методу delete
+        $this->method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
     }
 
     # function helper avoid excessive code
