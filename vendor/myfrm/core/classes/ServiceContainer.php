@@ -15,7 +15,7 @@ class ServiceContainer
     public function getService($service)
     {
         # перевірка чи є в нас сервіс який викликається
-        if (!isset($thi->services[$service])) {
+        if (!isset($this->services[$service])) {
             throw new \Exception("Not found service {$service}");
         }
         # викликаємо наш сервіс і запускаємо його через call_user_func
