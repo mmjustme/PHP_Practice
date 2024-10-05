@@ -43,6 +43,12 @@ final class Db
     public function getConnection(
         array $db_config
     ) {
+
+        # ств додаткову перевірку обєкту PDO якщо є повернемо його
+        if($this->connection instanceof PDO){
+            return $this;
+        }
+
         $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};
         charset={$db_config['charset']}";
 

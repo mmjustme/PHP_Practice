@@ -13,13 +13,12 @@ require dirname(__DIR__) . '/config/config.php';
 require __DIR__ .  '/bootstrap.php';
 require CORE . "/funcs.php";
 
-# виклик PDO через сервіс 
-$db = App::get(\myfrm\Db::class);
-dump($db);
 
 
-$db_config = require CONFIG . '/db.php';
-$db = (Db::getInstance())->getConnection($db_config);
+
+
+// $db_config = require CONFIG . '/db.php';
+// $db = (Db::getInstance())->getConnection($db_config);
 
 $router = new Router();
 

@@ -1,5 +1,5 @@
 <?php
-global $db;
+
 use myfrm\Validator;
 
 

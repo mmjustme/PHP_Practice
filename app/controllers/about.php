@@ -1,6 +1,6 @@
 <?php
 
-global $db;
+
 $title = 'MY BLOG :: ABOUT';
 
 $post = '<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex placeat minus, impedit
@@ -13,6 +13,6 @@ iste perferendis nostrum doloremque perspiciatis autem quae ipsa tempore.</p>
     numquam quo dignissimos corporis accusantium earum quisquam perspiciatis modi? Corporis
    totam excepturi repellendus placeat illo saepe nulla ipsum.</p>';
 
-$recent_posts = $db->query("SELECT * FROM posts ORDER BY id DESC LIMIT 3")->findAll();
+$recent_posts = db()->query("SELECT * FROM posts ORDER BY id DESC LIMIT 3")->findAll();
 
 require_once VIEWS . "/about.tpl.php";
