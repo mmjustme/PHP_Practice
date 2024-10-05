@@ -14,9 +14,9 @@ require __DIR__ .  '/bootstrap.php';
 require CORE . "/funcs.php";
 
 # виклик PDO через сервіс 
-$db = App::getContainer()->getService('\myfrm\Db');
+$db = App::get(\myfrm\Db::class);
 dump($db);
-// die;
+
 
 $db_config = require CONFIG . '/db.php';
 $db = (Db::getInstance())->getConnection($db_config);
