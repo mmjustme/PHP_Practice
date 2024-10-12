@@ -75,6 +75,14 @@ function get_alerts()
     }
 }
 
-function db(): \myfrm\Db{
-    return \myfrm\App::get( \myfrm\Db::class);
+function db(): \myfrm\Db
+{
+    return \myfrm\App::get(\myfrm\Db::class);
+}
+
+function check_auth()
+{
+    # return true if user exist
+    # false if not 
+    return isset($_SESSION['user']);
 }

@@ -1,6 +1,8 @@
 <?php
 
-use myfrm\Validator;
+# базова перевірка перед створенням посту чи авторизовано юзера
+# і якщо ні перекидаємо його на голоовну
+if (!check_auth()) redirect('/');
 
 
 $title = "MY BLOG :: New Post";
