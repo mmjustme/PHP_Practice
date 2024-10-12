@@ -4,7 +4,7 @@ namespace myfrm;
 
 class Router
 {
-    public $routes = [];
+    protected $routes = [];
     protected $uri;
     protected $method;
 
@@ -49,12 +49,22 @@ class Router
     {
         $matches = false;
 
-        # пробігаємося по наших роутах це масиви з uri,controller, methods
+
         foreach ($this->routes as $route) {
-            #якщо є співпадіння в строці запиту і методі підключаємо відпов. контроллер
             if (($route['uri'] === $this->uri) && ($route['method'] === strtoupper($this->method))) {
+
+                #перед підключенням контролерра перевіремо middleware
+                if ($route['middleware'] == 'guest') {
+                    if (check_auth()) redirect('/');
+                }
+
+                if ($route['middleware'] == 'auth') {
+                    if (!check_auth()) redirect('/register');
+                }
+
+
+
                 require CONTROLLERS . "/{$route['controller']}";
-                // dd($route);
                 $matches = true;
                 break;
             }
