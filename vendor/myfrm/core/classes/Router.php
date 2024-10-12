@@ -53,16 +53,19 @@ class Router
         foreach ($this->routes as $route) {
             if (($route['uri'] === $this->uri) && ($route['method'] === strtoupper($this->method))) {
 
-                #перед підключенням контролерра перевіремо middleware
-                if ($route['middleware'] == 'guest') {
-                    if (check_auth()) redirect('/');
+                # за за мовчуванням middleware = null (false)
+                if ($route['middleware']) {
+
+                    # додаткова перевірка ьеремо з константи нашу міделвару
+                    # якщо її немає буде false
+                    $middleware = MIDDLEWARE[$route['middleware']] ?? false;
+
+                    # якщо міделвари немає яку ми підключили кидаємо помилку
+                    if (!$middleware) throw new \Exception('Incorect middleware ' . $route['middleware']);
+
+                    # в іншому ж випадку підключаємо відпов. клас з методом
+                    (new $middleware)->handle();
                 }
-
-                if ($route['middleware'] == 'auth') {
-                    if (!check_auth()) redirect('/register');
-                }
-
-
 
                 require CONTROLLERS . "/{$route['controller']}";
                 $matches = true;

@@ -1,6 +1,11 @@
 <?php
 
-/**  @var \core\Router $router  */
+/**  @var \myfrm\Router $router  */
+
+const MIDDLEWARE = [
+    'auth' => \myfrm\middlewares\Auth::class,
+    'guest' => \myfrm\middlewares\Guest::class,
+];
 
 // Posts
 $router->get('', 'posts/index.php');
