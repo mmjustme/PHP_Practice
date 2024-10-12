@@ -1,21 +1,20 @@
 <?php
-/**  @var $router */
 
-// future methods from Router class
+/**  @var \core\Router $router  */
+
 // Posts
-$router->get("", "posts/index.php");
-// single post /posts/{post} but we have light version
-$router->get("posts", "posts/show.php");
-// Create posts
-$router->get("posts/create", "posts/create.php");
-// save new post
-$router->post("posts", "posts/store.php");
-$router->delete("posts", "posts/destroy.php");
+$router->get('', 'posts/index.php');
+$router->get('posts', 'posts/show.php');
+$router->get('posts/create', 'posts/create.php')->only('user');
+$router->post('posts', 'posts/store.php');
+$router->delete('posts', 'posts/destroy.php');
 
-$router->get("about", "about.php");
-// $routes = [
-//     "" => "index.php",
-//     "about" => "about.php",
-//     "post" => "post.php",
-//     "posts/create" => "post-create.php",
-// ];
+// Pages
+$router->get('about', 'about.php');
+
+// Users
+$router->get('register', 'users/register.php')->only('guest');
+$router->get('login', 'users/login.php')->only('guest');
+$router->get('logout', 'users/logout.php');
+
+dump($router->routes);

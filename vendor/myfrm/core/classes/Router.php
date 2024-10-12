@@ -1,8 +1,10 @@
 <?php
+
 namespace myfrm;
+
 class Router
 {
-    protected $routes = [];
+    public $routes = [];
     protected $uri;
     protected $method;
 
@@ -14,6 +16,22 @@ class Router
         $this->method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
     }
 
+    public function only($middleware)
+    {
+        // dump($this->routes);
+        // dump($middleware);
+        // dump(array_key_last($this->routes));
+
+        # шукаємо відповідний елемент масиву routes щоб в полі middleware
+        # записати назву middleware - user or guest
+        $key = array_key_last($this->routes);
+        $this->routes[$key]['middleware'] = $middleware;
+        # в резкльтаті ми маємо масив з шляхами це ініші масиви. 
+        # І у відповідному масиві (шляху) де має бути перевірка middleware
+        # буде поле з назвою middleware
+        return $this;
+    }
+
     # function helper avoid excessive code
     public function add($uri, $controller, $method)
     {
@@ -21,8 +39,11 @@ class Router
             'uri' => $uri,
             'controller' => $controller,
             'method' => $method,
+            'middleware' => null,
         ];
+        return $this;
     }
+
 
     public function match()
     {
@@ -44,16 +65,16 @@ class Router
 
     public function get($uri, $controller)
     {
-        $this->add($uri, $controller, "GET");
+        return $this->add($uri, $controller, "GET");
     }
 
     public function post($uri, $controller)
     {
-        $this->add($uri, $controller, "POST");
+        return $this->add($uri, $controller, "POST");
     }
 
     public function delete($uri, $controller)
     {
-        $this->add($uri, $controller, "DELETE");
+        return $this->add($uri, $controller, "DELETE");
     }
 }
