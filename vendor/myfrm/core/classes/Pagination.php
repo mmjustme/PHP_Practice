@@ -21,6 +21,7 @@ class Pagination
   {
     $this->count_pages = $this->getCountPages();
     $this->current_page = $this->getCurrentPage();
+    $this->uri = $this->getParams();
   }
 
   private function getCountPages(): int
@@ -43,5 +44,30 @@ class Pagination
   public function getStart(): int
   {
     return ($this->current_page - 1) * $this->per_page;
+  }
+
+  private function getParams(): string
+  {
+    # /?page=33&foo=bar - приклад строки $uri
+    $url = $_SERVER['REQUEST_URI'];
+    # { [0]=> string(1) "/" [1]=> string(15) "page=33&foo=bar" }
+    $url = explode('?', $url);
+    var_dump($url);
+    $uri = $url[0];
+
+    if (isset($url[1]) && $url[1] !== '') {
+      $uri .= '?';
+      # параметри можна виділити через explode і отримати масив з нич
+      # при цьому параметр page потріно викинути
+      $params = explode('&', $url[1]);
+      var_dump($params);
+      foreach ($params as $param) {
+        #str_contains перевірить чи в масиві $param є значення 'page='
+        if (!str_contains($param, 'page=')) {
+          $uri .= "{$param}&";
+        }
+      }
+    }
+    return $uri;
   }
 }
