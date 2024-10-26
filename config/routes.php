@@ -19,8 +19,9 @@ $router->get('about', 'about.php');
 
 // Users
 # show form for register
-$router->get('register', 'users/register.php')->only('guest');
+//$router->get('register', 'users/register.php')->only('guest');
+$router->add('register', 'users/register.php', ['get', 'post'])->only('guest');
 # create user in db
-$router->post('register', 'users/store.php')->only('guest');
+//$router->post('register', 'users/store.php')->only('guest');
 $router->get('login', 'users/login.php')->only('guest');
 $router->get('logout', 'users/logout.php');
