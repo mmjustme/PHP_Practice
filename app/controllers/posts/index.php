@@ -15,6 +15,8 @@ print_arr($pagination);
 $start = $pagination->getStart();
 var_dump($start);
 
+echo $pagination->getHtml();
+
 die();
 # тепер db() підтягує з функцій
 $posts = db()->query("SELECT * FROM posts ORDER BY id DESC LIMIT $start, $per_page")->findAll();
