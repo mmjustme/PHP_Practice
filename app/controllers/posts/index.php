@@ -13,9 +13,11 @@ $pagination = new \myfrm\Pagination((int)$page, $per_page, $total);
 
 print_arr($pagination);
 $start = $pagination->getStart();
-var_dump($start);
 
-echo $pagination->getHtml();
+# при виклику класу через echo, під капотом php шукає метод класу toString
+# тому ми можемо видалити метод і створити в класі новий метод toString де і викличемо getHtml()
+# таким чином залишається чистий запис echo $pagination; замість echo $pagination->getHtml();
+echo $pagination;
 
 die();
 # тепер db() підтягує з функцій

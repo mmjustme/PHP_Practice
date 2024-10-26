@@ -22,6 +22,7 @@ class Pagination
     $this->count_pages = $this->getCountPages();
     $this->current_page = $this->getCurrentPage();
     $this->uri = $this->getParams();
+    $this->mid_size = $this->getMidSize();
   }
 
   private function getCountPages(): int
@@ -139,5 +140,16 @@ class Pagination
       # якщо нема параметрів добавляємо номер сторінки
       return "{$this->uri}?page={$page}";
     }
+  }
+
+  # додаємо функціонал відбраження усіх сторінок якщо їх не багато
+  private function getMidSize(): int
+  {
+    return $this->count_pages <= $this->all_pages ? $this->count_pages : $this->mid_size;
+  }
+
+  public function __toString(): string
+  {
+    return $this->getHtml();
   }
 }
