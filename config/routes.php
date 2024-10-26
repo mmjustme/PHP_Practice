@@ -1,10 +1,10 @@
 <?php
 
-/**  @var \myfrm\Router $router  */
+/**  @var \myfrm\Router $router */
 
 const MIDDLEWARE = [
-    'auth' => \myfrm\middlewares\Auth::class,
-    'guest' => \myfrm\middlewares\Guest::class,
+  'auth' => \myfrm\middlewares\Auth::class,
+  'guest' => \myfrm\middlewares\Guest::class,
 ];
 
 // Posts
@@ -18,6 +18,9 @@ $router->delete('posts', 'posts/destroy.php');
 $router->get('about', 'about.php');
 
 // Users
+# show form for register
 $router->get('register', 'users/register.php')->only('guest');
+# create user in db
+$router->post('register', 'users/store.php')->only('guest');
 $router->get('login', 'users/login.php')->only('guest');
 $router->get('logout', 'users/logout.php');
