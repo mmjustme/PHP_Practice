@@ -6,7 +6,7 @@ $validator = new \myfrm\Validator();
 
 $form_rules = [
   'name' => ['required' => true, 'min' => 3, 'max' => 100,],
-  'email' => ['email' => true, 'max' => 100,],
+  'email' => ['email' => true, 'max' => 100, 'unique' => 'users:email'],
   'password' => ['required' => true, 'min' => 6,]
 ];
 
