@@ -13,7 +13,7 @@
 							<input name="name" type="text" class="form-control" id="name" placeholder="Name"
 										 value="<?= old("name") ?>">
 
-              <?= isset($validtion) ? $validtion->listErrors("name") : ''; ?>
+              <?= isset($validation) ? $validation->listErrors("name") : ''; ?>
 						</div>
 
 						<div class="mb-3">
@@ -21,7 +21,7 @@
 							<input name="email" type="email" class="form-control" id="email" placeholder="Email"
 										 rows="3" value="<?= old("email") ?>">
 
-              <?= isset($validtion) ? $validtion->listErrors("email") : ''; ?>
+              <?= isset($validation) ? $validation->listErrors("email") : ''; ?>
 						</div>
 
 						<div class="mb-3">
@@ -29,7 +29,7 @@
 							<input name="password" type="password" class="form-control" id="password" placeholder="Password"
 										 rows="3" value="<?= old("password") ?>">
 
-              <?= isset($validtion) ? $validtion->listErrors("password") : ''; ?>
+              <?= isset($validation) ? $validation->listErrors("password") : ''; ?>
 						</div>
 
 

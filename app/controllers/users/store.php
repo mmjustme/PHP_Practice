@@ -10,9 +10,9 @@ $form_rules = [
   'password' => ['required' => true, 'min' => 6,]
 ];
 
-$validtion = $validator->validate($data, $form_rules);
+$validation = $validator->validate($data, $form_rules);
 
-if (!$validtion->hasErrors()) {
+if (!$validation->hasErrors()) {
   $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
   if (db()->query("INSERT INTO users (`name`,`email`,`password`) VALUES (:name,:email,:password)", $data)) {
