@@ -1,5 +1,6 @@
 <?php
 
-# for test
-$_SESSION['user']['name'] = 'Dmytro';
-redirect('/');
+$title = 'My Blog :: Login';
+
+
+require_once VIEWS . '/users/login.tpl.php';
