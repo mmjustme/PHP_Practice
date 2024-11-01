@@ -4,9 +4,9 @@ namespace myfrm;
 
 class Router
 {
-  protected $routes = [];
+  public $routes = [];
   protected $uri;
-  protected $method;
+  public $method;
 
   public function __construct()
   {
@@ -60,7 +60,7 @@ class Router
 
 
     foreach ($this->routes as $route) {
-      if (($route['uri'] === $this->uri) && (in_array($this->method, $route['method']))) {
+      if (($route['uri'] === $this->uri) && (in_array(strtoupper($this->method), $route['method']))) {
 
         # за за мовчуванням middleware = null (false)
         if ($route['middleware']) {
@@ -75,7 +75,6 @@ class Router
           # в іншому ж випадку підключаємо відпов. клас з методом
           (new $middleware)->handle();
         }
-
         require CONTROLLERS . "/{$route['controller']}";
         $matches = true;
         break;
