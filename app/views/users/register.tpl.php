@@ -6,7 +6,8 @@
 			<div class="row">
 				<div class="col-md-4 m-auto">
 					<h1>Register Page</h1>
-					<form action="/register" method="post">
+					<!-- важливий параметр при роботі з файлами enctype="multipart/form-data-->
+					<form action="/register" method="post" enctype="multipart/form-data">
 
 						<div class="mb-3">
 							<label for="name" class="form-label">Name</label>
@@ -30,6 +31,10 @@
 										 rows="3" value="<?= old("password") ?>">
 
               <?= isset($validation) ? $validation->listErrors("password") : ''; ?>
+						</div>
+						<div class="mb-3">
+							<label for="avatar" class="form-label">Avatar</label>
+							<input name="avatar" class="form-control" type="file" id="avatar">
 						</div>
 
 
