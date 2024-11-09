@@ -41,6 +41,10 @@
 
 					<ul class="navbar-nav">
             <?php if (isset($_SESSION['user'])): ?>
+							<a class="navbar-brand d-none d-lg-block">
+								<img src="<?= $_SESSION['user']['avatar'] ?>" alt="avatar"
+										 style="height: 35px; width:35px; border-radius: 50%; object-fit: cover">
+							</a>
 							<li class="nav-item">
 								<a class="nav-link"><?= $_SESSION['user']['name']; ?></a>
 							</li>
