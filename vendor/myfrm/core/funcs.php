@@ -28,19 +28,19 @@ function abort($code = 404, $title = "404 - Not found")
   die();
 }
 
-function load($fillable, $post=true)
+function load($fillable, $post = true)
 {
   $load_data = $post ? $_POST : $_GET;
   $data = [];
   # пробігаємося по масиву $fillable ['name', 'email', 'password', 'avatar']
-  foreach ($fillable as $name){
+  foreach ($fillable as $name) {
     #якщо в масиві $load_data є поле з масиву $fillable
-    if(isset($load_data[$name])){
+    if (isset($load_data[$name])) {
       # додатково чекнемо якщо не масив то застос. trim
       # оск для масиву трім не працює
-      if(!is_array($load_data[$name])){
+      if (!is_array($load_data[$name])) {
         $data[$name] = trim($load_data[$name]);
-      } else{
+      } else {
         # записуємо в $data по ключу
         $data[$name] = $load_data[$name];
       }
@@ -107,4 +107,11 @@ function check_auth()
   # return true if user exist
   # false if not
   return isset($_SESSION['user']);
+}
+
+function getFileExt($fileName)
+{
+  $fileName = explode('.', $fileName);
+  # поверне останній елемент масиву
+  return end($fileName);
 }

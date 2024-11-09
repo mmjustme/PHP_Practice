@@ -4,12 +4,13 @@ namespace myfrm;
 class Validator
 {
   protected $errors = [];
-  protected $allowed_validation_methods = ['required', 'min', 'max', 'email', 'unique'];
+  protected $allowed_validation_methods = ['required', 'min', 'max', 'email', 'unique', 'ext'];
   protected $errorMessages = [
     "required" => "The ':fieldname:' field is required",
     "min" => "The ':fieldname:' field must be a minimun ':rulevalue:' characters",
     "max" => "The ':fieldname:' field must be a maximum ':rulevalue:' characters",
     "email" => "Not valid email",
+    "ext" => "Not valid extension. Use :rulevalue:",
     "unique" => "The :fieldname: have been already taken",
   ];
 
@@ -130,7 +131,7 @@ class Validator
   {
     # суть методу повернути true якщо пусто і requred відсутній
     # і false якщо requred є
-    return !empty(trim($value));
+    return !empty($value);
   }
 
   protected function min($value, $rule_value)
@@ -161,5 +162,18 @@ class Validator
 
     # інвертуємо значення через !, щоб якщо знайшли такий імел в базі вертаємо false
     return (!db()->query("SELECT $data[1] FROM $data[0] WHERE $data[1] = ?", [$value])->getColumn());
+  }
+
+  protected function ext($value, $rule_value)
+  {
+    # перша перевірка чи взагалі є файл. Через поле name перевіримо
+    # повертаючи true ми робимо поле опційним
+    $fileName = $value['name'];
+    if(empty($fileName)) return true;
+
+    $allowedExtensions = explode('|',$rule_value);
+    $fileExtension = getFileExt($fileName);
+
+    return in_array($fileExtension, $allowedExtensions);
   }
 }
