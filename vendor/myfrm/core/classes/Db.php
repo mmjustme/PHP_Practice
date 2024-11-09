@@ -114,4 +114,10 @@ final class Db
     return $this->stmt->fetchColumn();
   }
 
+  public function getInsertId()
+  {
+    # поверне останнє id що було опрацьовано
+    return $this->connection->lastInsertId();
+  }
+
 }

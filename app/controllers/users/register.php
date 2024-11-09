@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     'email' => ['email' => true, 'max' => 100, 'unique' => 'users:email'],
     'password' => ['required' => true, 'min' => 6,],
     'avatar' => [
-//      'required'=>true, optional
+//      'required'=>true, // optional
       'ext' => 'png|jpg|gif',
     'size' => 1_048_576, // 1mb in bytes 1024 * 1024
     ],
@@ -26,12 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   $validation = $validator->validate($data, $form_rules);
 
-  dd($validation->getErrors());
 
   if (!$validation->hasErrors()) {
     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-    if (db()->query("INSERT INTO users (`name`,`email`,`password`) VALUES (:name,:email,:password)", $data)) {
+    if (db()->query(
+      "INSERT INTO users (`name`,`email`,`password`) VALUES (?,?,?)",
+      [$data['name'], $data['email'], $data['password']])) {
+      $id = db()->getInsertId();
+      dd($id);
       $_SESSION['success'] = "User has been registered";
     } else {
       $_SESSION['error'] = "DB ERROR";
