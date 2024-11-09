@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     'avatar' => [
 //      'required'=>true, // optional
       'ext' => 'png|jpg|gif',
-    'size' => 1_048_576, // 1mb in bytes 1024 * 1024
+      'size' => 1_048_576, // 1mb in bytes 1024 * 1024
     ],
   ];
 
@@ -33,8 +33,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (db()->query(
       "INSERT INTO users (`name`,`email`,`password`) VALUES (?,?,?)",
       [$data['name'], $data['email'], $data['password']])) {
-      $id = db()->getInsertId();
-      dd($id);
+
+      if (!empty($data['avatar']['name'])) {
+        $id = db()->getInsertId();
+        $fileExtension = getFileExt($data['avatar']['name']);
+        # save file
+        $dir = '/avatars/' . date('Y') . '/' . date('m') . '/' . date('d');
+        # перевірими чи такий шлях вже є і якщо ні створимо
+        if (!is_dir(UPLOADS . $dir)) {
+          mkdir(UPLOADS . $dir, 0755, true);
+        }
+        # шлях збереження файлу
+        $file_path = UPLOADS . "{$dir}/avatar-{$id}.{$fileExtension}";
+        # шлях де знаходиться файл для бд
+        $file_url = "/uploads{$dir}/avatar-{$id}.{$fileExtension}";
+        # першочергово файл зн в тимчасовій папці його переміщають через спец фн
+        if (move_uploaded_file($data['avatar']['tmp_name'], $file_path)) {
+          # оновлюємо поле з файлом в бд
+          db()->query('UPDATE users SET avatar=? WHERE id=?', [$file_url, $id]);
+        } else {
+          echo "error upload file";
+        }
+      }
+
       $_SESSION['success'] = "User has been registered";
     } else {
       $_SESSION['error'] = "DB ERROR";

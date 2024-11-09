@@ -182,7 +182,6 @@ class Validator
   {
     # в масиві вже є розмір файлу в байтах
     $fileSize = $value['size'] ?? '';
-    dump($fileSize);
     if (empty($fileSize)) return true;
 
     return $value['size'] <= $rule_value;
