@@ -3,11 +3,15 @@
 $title = 'My Blog :: Register';
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-//  echo 'Lol';
-//  dd($_POST);
 
-  $data = load(['name', 'email', 'password']);
+  $data = load(['name', 'email', 'password', 'avatar']);
   $validator = new \myfrm\Validator();
+# data from form
+  dump($_POST);
+# data with files
+  dump($_FILES);
+# data after fn load with field avatar
+  dd($data);
 
   $form_rules = [
     'name' => ['required' => true, 'min' => 3, 'max' => 100,],

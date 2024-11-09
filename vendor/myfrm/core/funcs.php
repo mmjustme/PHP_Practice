@@ -28,17 +28,37 @@ function abort($code = 404, $title = "404 - Not found")
   die();
 }
 
-function load($fillable)
+function load($fillable, $post=true)
 {
+  $load_data = $post ? $_POST : $_GET;
   $data = [];
-  #задача перевірити чи в масиві fillable є поля з данних юзера
-  foreach ($_POST as $key => $value) {
-    # беремо $key і перевіряємо наявність в fillable
-    if (in_array($key, $fillable)) {
-      # запис данних юзера в масив data
-      $data[$key] = trim($value);
+  # пробігаємося по масиву $fillable ['name', 'email', 'password', 'avatar']
+  foreach ($fillable as $name){
+    #якщо в масиві $load_data є поле з масиву $fillable
+    if(isset($load_data[$name])){
+      # додатково чекнемо якщо не масив то застос. trim
+      # оск для масиву трім не працює
+      if(!is_array($load_data[$name])){
+        $data[$name] = trim($load_data[$name]);
+      } else{
+        # записуємо в $data по ключу
+        $data[$name] = $load_data[$name];
+      }
+    } else {
+      # або кладемо туди ""
+      # таким чином додамо avatar і воно буде пусте
+      $data[$name] = '';
     }
   }
+
+//  #задача перевірити чи в масиві fillable є поля з данних юзера
+//  foreach ($load_data as $key => $value) {
+//    # беремо $key і перевіряємо наявність в fillable
+//    if (in_array($key, $fillable)) {
+//      # запис данних юзера в масив data
+//      $data[$key] = trim($value);
+//    }
+//  }
   return $data;
 }
 
