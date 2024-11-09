@@ -4,7 +4,7 @@ namespace myfrm;
 class Validator
 {
   protected $errors = [];
-  protected $allowed_validation_methods = ['required', 'min', 'max', 'email', 'unique', 'ext'];
+  protected $allowed_validation_methods = ['required', 'min', 'max', 'email', 'unique', 'ext', 'size'];
   protected $errorMessages = [
     "required" => "The ':fieldname:' field is required",
     "min" => "The ':fieldname:' field must be a minimun ':rulevalue:' characters",
@@ -12,6 +12,7 @@ class Validator
     "email" => "Not valid email",
     "ext" => "Not valid extension. Use :rulevalue:",
     "unique" => "The :fieldname: have been already taken",
+    "size" => "File :fieldname: is too big. Allowed max size 1M ",
   ];
 
   public function validate($data = [], $rules = [])
@@ -168,12 +169,22 @@ class Validator
   {
     # перша перевірка чи взагалі є файл. Через поле name перевіримо
     # повертаючи true ми робимо поле опційним
-    $fileName = $value['name'];
-    if(empty($fileName)) return true;
+    $fileName = $value['name'] ?? '';
+    if (empty($fileName)) return true;
 
-    $allowedExtensions = explode('|',$rule_value);
+    $allowedExtensions = explode('|', $rule_value);
     $fileExtension = getFileExt($fileName);
 
     return in_array($fileExtension, $allowedExtensions);
+  }
+
+  protected function size($value, $rule_value)
+  {
+    # в масиві вже є розмір файлу в байтах
+    $fileSize = $value['size'] ?? '';
+    dump($fileSize);
+    if (empty($fileSize)) return true;
+
+    return $value['size'] <= $rule_value;
   }
 }

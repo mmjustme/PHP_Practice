@@ -17,9 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     'name' => ['required' => true, 'min' => 3, 'max' => 100,],
     'email' => ['email' => true, 'max' => 100, 'unique' => 'users:email'],
     'password' => ['required' => true, 'min' => 6,],
-    'avatar'=> [
+    'avatar' => [
 //      'required'=>true, optional
-      'ext'=>'png|jpg|gif'],
+      'ext' => 'png|jpg|gif',
+    'size' => 1_048_576, // 1mb in bytes 1024 * 1024
+    ],
   ];
 
   $validation = $validator->validate($data, $form_rules);
